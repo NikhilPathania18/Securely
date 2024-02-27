@@ -12,7 +12,6 @@ dotenv.config();
 connectDB();
 const app = express();
 
-
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:5000000000000000000}));
 
@@ -35,7 +34,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// --------------------------deployment------------------------------
 
 // Error Handling middlewares
 app.use(notFound);

@@ -66,7 +66,7 @@ const ScrollableChat = ({ messages }) => {
 
   
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-  console.log(chats)
+  console.log('chats',chats)
 
   useEffect(() => {
     const newSocket = io(ENDPOINT);
@@ -78,11 +78,9 @@ const ScrollableChat = ({ messages }) => {
       newSocket.disconnect();
     };
     
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ENDPOINT, user]);
 
   const fetchChats = async () => {
-    // console.log(user._id);
     try {
       const config = {
         headers: {
@@ -194,13 +192,6 @@ const ScrollableChat = ({ messages }) => {
               alignItems="center"
               justifyContent="center"
             >
-              {/* <Text
-              fontSize={{ base: "28px", md: "30px" }}
-              fontFamily="Work sans"
-              style = {{margin: "auto"}}
-            >
-              <span style={{fontWeight: "bold"}}>Email of the original author:</span> {email}
-            </Text> */}
               {
                 "Forward To"
               }
@@ -292,7 +283,7 @@ const ScrollableChat = ({ messages }) => {
                       position: "relative",
                     }}
                   >
-                    <IconButton
+                    {/* <IconButton
                       style={{
                         width: "20px",
                         marginRight: "3px",
@@ -305,7 +296,7 @@ const ScrollableChat = ({ messages }) => {
                         onOpen();
                         setEmail(getEmailFromEncryptedString(m.content));
                       }}
-                    />
+                    /> */}
                     <img
                       src={`${getBase64FromEncryptedString(m.content)}`}
                       alt="Image"

@@ -12,7 +12,7 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
-
+import { util, steg } from "../config/steganography";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
@@ -86,11 +86,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         const userMail = JSON.parse(localStorage.getItem('userInfo')).email;
 
         let encodedMessage = base64Image
+
+        console.log('before')
+        const result = await steg.encode(userMail,base64Image)
+
+        console.log('result is', result);
+
+
         if(userMail){
-          encodedMessage = base64Image + "*" + userMail
+          encodedMessage = result + "*" + userMail
         }
 
-        console.log('encoded message is: ',encodedMessage)
+        // console.log('encoded message is: ',encodedMessage)
         await sendImage(encodedMessage);
         setEncodedImage(encodedMessage);
       };

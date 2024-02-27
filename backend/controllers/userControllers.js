@@ -6,6 +6,8 @@ const generateToken = require("../config/generateToken");
 //@route           GET /api/user?search=
 //@access          Public
 const allUsers = asyncHandler(async (req, res) => {
+
+  console.log('req',req.body)
   const keyword = req.query.search
     ? {
         $or: [
@@ -45,6 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     pic,
   });
+
   console.log('ham')
   if (user) {
     console.log('first')
@@ -57,7 +60,6 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    console.log('shailalsdkjf')
     return res.status(404);
   }
 });
